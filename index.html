@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al Souhardo Authoi — Competitive Programmer & Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  .proj-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #00e5ff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: opacity 0.2s;
+}
+.proj-link:hover {
+  opacity: 0.75;
+}
+
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#050508;
+  --bg2:#0c0c12;
+  --bg3:#14141e;
+  --bg4:#1c1c2a;
+  --text:#eeeaf8;
+  --muted:#7a7890;
+  --faint:#3a3850;
+  --accent:#00e5ff;
+  --accent2:#7c3aed;
+  --accent3:#f472b6;
+  --green:#22d3a4;
+  --border:rgba(255,255,255,0.06);
+  --border2:rgba(0,229,255,0.2);
+  --font:'Outfit',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --r:12px;
+  --r2:20px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.65;overflow-x:hidden}
+
+/* scrollbar */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:4px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 5%;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,5,8,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{font-family:var(--mono);font-size:1rem;font-weight:700;color:var(--accent);text-decoration:none;letter-spacing:0.05em}
+.logo span{color:var(--muted)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.8rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-hire{background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.3);color:var(--accent);padding:.45rem 1.1rem;border-radius:100px;font-size:.8rem;font-weight:600;text-decoration:none;font-family:var(--mono);transition:all .2s;letter-spacing:.05em}
+.nav-hire:hover{background:rgba(0,229,255,0.2)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.nav-toggle span{width:22px;height:1.5px;background:var(--text);border-radius:2px;transition:all .3s;display:block}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding:80px 5% 4rem;position:relative;overflow:hidden}
+.hero-noise{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.4;pointer-events:none}
+.hero-glow1{position:absolute;top:-10%;left:-10%;width:60%;height:60%;background:radial-gradient(ellipse,rgba(124,58,237,0.12) 0%,transparent 70%);pointer-events:none}
+.hero-glow2{position:absolute;bottom:-10%;right:-5%;width:50%;height:50%;background:radial-gradient(ellipse,rgba(0,229,255,0.08) 0%,transparent 70%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%)}
+.hero-inner{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;width:100%;max-width:1200px;margin:0 auto}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(0,229,255,0.05);border:1px solid rgba(0,229,255,0.15);padding:.35rem 1rem;border-radius:100px;font-family:var(--mono);font-size:.75rem;color:var(--accent);margin-bottom:1.5rem;letter-spacing:.08em}
+.hero-tag-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:blink 1.8s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero-title{font-size:clamp(2.8rem,5vw,4.5rem);font-weight:900;line-height:.95;letter-spacing:-.04em;margin-bottom:1.2rem}
+.hero-title .name{display:block;background:linear-gradient(135deg,#fff 30%,rgba(255,255,255,.6));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-title .role{display:block;color:var(--accent);font-size:clamp(1.4rem,2.5vw,2.2rem);font-family:var(--mono);font-weight:500;letter-spacing:-.01em;margin-top:.4rem}
+.hero-desc{color:var(--muted);font-size:1.05rem;font-weight:300;line-height:1.8;max-width:460px;margin-bottom:2.5rem}
+.hero-desc strong{color:var(--text);font-weight:500}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-glow{background:var(--accent);color:#050508;padding:.85rem 2rem;border-radius:100px;font-family:var(--font);font-weight:700;font-size:.95rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .25s;letter-spacing:-.01em;box-shadow:0 0 30px rgba(0,229,255,0.2)}
+.btn-glow:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(0,229,255,0.35)}
+.btn-outline{background:transparent;color:var(--text);padding:.85rem 2rem;border-radius:100px;font-family:var(--font);font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid var(--faint);display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.btn-outline:hover{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.04)}
+.hero-photo-wrap{position:relative;display:flex;justify-content:center}
+.hero-photo-ring{position:absolute;inset:-12px;border-radius:50%;border:1.5px solid rgba(0,229,255,.15);animation:ring-spin 20s linear infinite}
+.hero-photo-ring2{position:absolute;inset:-24px;border-radius:50%;border:1px solid rgba(124,58,237,.1);animation:ring-spin 30s linear infinite reverse}
+@keyframes ring-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.hero-photo-frame{width:320px;height:380px;border-radius:var(--r2);overflow:hidden;position:relative;border:1px solid rgba(0,229,255,.15);box-shadow:0 40px 80px rgba(0,0,0,.5)}
+.hero-photo-frame img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.hero-photo-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(5,5,8,.6));pointer-events:none}
+.hero-badge{position:absolute;bottom:-.8rem;left:50%;transform:translateX(-50%);background:var(--bg3);border:1px solid var(--border2);padding:.6rem 1.2rem;border-radius:100px;white-space:nowrap;font-family:var(--mono);font-size:.72rem;color:var(--accent);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.hero-stats{position:absolute;top:2rem;right:-1rem;display:flex;flex-direction:column;gap:.75rem}
+.hstat{background:var(--bg3);border:1px solid var(--border);padding:.6rem .9rem;border-radius:var(--r);text-align:center}
+.hstat-n{font-family:var(--mono);font-size:1.1rem;font-weight:700;color:var(--accent);display:block;letter-spacing:-.02em}
+.hstat-l{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+
+/* SECTIONS */
+section{padding:6rem 5%}
+.container{max-width:1200px;margin:0 auto}
+.sec-label{font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;display:flex;align-items:center;gap:10px}
+.sec-label::before{content:'';display:none}
+.sec-title{font-size:clamp(2rem,4vw,3rem);font-weight:900;letter-spacing:-.04em;line-height:1;margin-bottom:1rem}
+.sec-sub{color:var(--muted);font-size:1rem;font-weight:300;max-width:500px;line-height:1.75}
+
+/* ABOUT */
+#about{background:var(--bg2)}
+.about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:start}
+.about-left{}
+.about-info-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.info-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem}
+.info-card-icon{font-size:1.3rem;margin-bottom:.5rem}
+.info-card-label{font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.25rem}
+.info-card-val{font-size:.9rem;font-weight:600;color:var(--text)}
+.about-text p{color:var(--muted);font-size:1rem;font-weight:300;line-height:1.85;margin-bottom:1rem}
+.about-text p strong{color:var(--text);font-weight:600}
+.about-text p:last-child{margin-bottom:0}
+.lang-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.5rem}
+.lang-badge{background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.25);padding:.3rem .9rem;border-radius:100px;font-family:var(--mono);font-size:.75rem;color:#a78bfa;letter-spacing:.05em}
+
+/* SKILLS */
+#skills{background:var(--bg)}
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3.5rem}
+.skill-group-title{font-family:var(--mono);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem;display:flex;align-items:center;gap:8px}
+.skill-group-title::before{content:'';width:20px;height:1px;background:var(--accent)}
+.skill-pills{display:flex;flex-wrap:wrap;gap:.5rem}
+.skill-pill{background:var(--bg3);border:1px solid var(--border);padding:.4rem 1rem;border-radius:100px;font-size:.8rem;color:var(--muted);font-family:var(--mono);transition:all .2s;cursor:default}
+.skill-pill:hover{border-color:var(--border2);color:var(--accent)}
+.skill-pill.highlight{background:rgba(0,229,255,.06);border-color:rgba(0,229,255,.2);color:var(--accent)}
+
+/* EXPERIENCE */
+#experience{background:var(--bg2)}
+.timeline{position:relative;margin-top:3.5rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),transparent)}
+.titem{padding:0 0 3.5rem 2.5rem;position:relative}
+.titem:last-child{padding-bottom:0}
+.titem::before{content:'';position:absolute;left:-5px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px rgba(0,229,255,.6)}
+.titem-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:.75rem;flex-wrap:wrap}
+.titem-title{font-size:1.15rem;font-weight:700;color:var(--text)}
+.titem-company{color:var(--accent);font-family:var(--mono);font-size:.85rem;font-weight:500}
+.titem-date{font-family:var(--mono);font-size:.72rem;color:var(--muted);background:var(--bg3);border:1px solid var(--border);padding:.3rem .8rem;border-radius:100px;white-space:nowrap}
+.titem-bullets{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.titem-bullets li{color:var(--muted);font-size:.9rem;font-weight:300;line-height:1.7;padding-left:1.25rem;position:relative}
+.titem-bullets li::before{content:'›';position:absolute;left:0;color:var(--accent);font-weight:700}
+
+/* EDUCATION */
+#education{background:var(--bg)}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3.5rem}
+.edu-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:2rem;position:relative;overflow:hidden;transition:border-color .3s}
+.edu-card:hover{border-color:rgba(0,229,255,.2)}
+.edu-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent2),var(--accent))}
+.edu-card.secondary::before{background:linear-gradient(90deg,var(--accent3),var(--accent2))}
+.edu-degree{font-size:1.1rem;font-weight:700;margin-bottom:.4rem}
+.edu-inst{color:var(--accent);font-family:var(--mono);font-size:.85rem;font-weight:500;margin-bottom:.25rem}
+.edu-date{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-bottom:1rem}
+.edu-notes{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.edu-notes li{font-size:.85rem;color:var(--muted);padding-left:1.2rem;position:relative;font-weight:300}
+.edu-notes li::before{content:'—';position:absolute;left:0;color:var(--faint)}
+
+/* ACHIEVEMENTS */
+#achievements{background:var(--bg2)}
+.ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
+.ach-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:2rem;transition:all .3s;cursor:default;position:relative;overflow:hidden}
+.ach-card:hover{border-color:rgba(0,229,255,.2);transform:translateY(-4px)}
+.ach-card::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 120%,rgba(0,229,255,.04),transparent);opacity:0;transition:opacity .3s}
+.ach-card:hover::after{opacity:1}
+.ach-icon{font-size:2rem;margin-bottom:1rem}
+.ach-title{font-size:1rem;font-weight:700;margin-bottom:.5rem}
+.ach-desc{font-size:.85rem;color:var(--muted);line-height:1.7;font-weight:300}
+.ach-link{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:.72rem;color:var(--accent);text-decoration:none;margin-top:1rem;opacity:.8;transition:opacity .2s}
+.ach-link:hover{opacity:1}
+
+/* PROJECTS */
+#projects{background:var(--bg)}
+.projects-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;flex-wrap:wrap;gap:1.5rem}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.proj-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;transition:all .3s;position:relative}
+.proj-card:hover{border-color:rgba(0,229,255,.18);transform:translateY(-5px)}
+.proj-thumb{height:180px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;overflow:hidden}
+.proj-thumb::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.2)}
+.p1{background:linear-gradient(135deg,#0f0c29,#302b63,#24243e)}
+.p2{background:linear-gradient(135deg,#004e92,#000428)}
+.p3{background:linear-gradient(135deg,#093028,#237a57)}
+.p4{background:linear-gradient(135deg,#4a00e0,#8e2de2)}
+.p5{background:linear-gradient(135deg,#c94b4b,#4b134f)}
+.p6{background:linear-gradient(135deg,#134e5e,#71b280)}
+.proj-body{padding:1.5rem}
+.proj-type{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.proj-name{font-size:1.05rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.5rem}
+.proj-desc{font-size:.82rem;color:var(--muted);line-height:1.65;font-weight:300}
+.proj-footer{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-top:1px solid var(--border)}
+.proj-tags{display:flex;gap:.4rem;flex-wrap:wrap}
+.ptag{background:var(--bg3);padding:.2rem .55rem;border-radius:4px;font-family:var(--mono);font-size:.65rem;color:var(--muted)}
+.add-proj-note{background:var(--bg2);border:2px dashed var(--faint);border-radius:var(--r2);padding:3rem 2rem;text-align:center;color:var(--faint);font-size:.9rem;font-family:var(--mono);letter-spacing:.05em;grid-column:span 3;transition:border-color .3s}
+.add-proj-note:hover{border-color:rgba(0,229,255,.2);color:var(--muted)}
+.add-proj-note .plus{font-size:2rem;display:block;margin-bottom:.75rem;opacity:.5}
+
+/* GALLERY */
+#gallery{background:var(--bg2)}
+.gallery-intro{max-width:560px;margin-bottom:3rem}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.gallery-slot{aspect-ratio:1;border-radius:var(--r);border:2px dashed var(--faint);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:var(--faint);font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;cursor:pointer;transition:all .3s;background:var(--bg3)}
+.gallery-slot:hover{border-color:rgba(0,229,255,.3);color:var(--accent);background:rgba(0,229,255,.03)}
+.gallery-slot-icon{font-size:1.8rem;opacity:.5}
+.gallery-slot:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto;min-height:220px}
+
+/* CONTACT */
+#contact{background:var(--bg);position:relative;overflow:hidden}
+.contact-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(124,58,237,.1) 0%,transparent 70%);pointer-events:none}
+.contact-inner{position:relative;max-width:700px;margin:0 auto;text-align:center}
+.contact-title{font-size:clamp(2.5rem,5vw,4.5rem);font-weight:900;letter-spacing:-.05em;line-height:.95;margin-bottom:1.5rem}
+.contact-title .line2{color:var(--accent);display:block}
+.contact-sub{color:var(--muted);font-size:1rem;font-weight:300;line-height:1.8;margin-bottom:3rem}
+.contact-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:2.5rem;text-align:left}
+.contact-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;display:flex;align-items:center;gap:1rem;text-decoration:none;transition:all .2s}
+.contact-card:hover{border-color:var(--border2);background:rgba(0,229,255,.04)}
+.cc-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.cc-label{font-family:var(--mono);font-size:.65rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.2rem}
+.cc-val{font-size:.85rem;font-weight:600;color:var(--text);word-break:break-all}
+.socials{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap}
+.social-btn{display:inline-flex;align-items:center;gap:7px;padding:.6rem 1.2rem;border-radius:100px;border:1px solid var(--border);color:var(--muted);text-decoration:none;font-family:var(--mono);font-size:.75rem;transition:all .2s;letter-spacing:.04em}
+.social-btn:hover{border-color:var(--border2);color:var(--accent);background:rgba(0,229,255,.05)}
+
+/* FOOTER */
+footer{padding:1.5rem 5%;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:var(--bg)}
+.footer-copy{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.footer-back{font-family:var(--mono);font-size:.72rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.footer-back:hover{color:var(--accent)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s cubic-bezier(.25,.46,.45,.94),transform .65s cubic-bezier(.25,.46,.45,.94)}
+.reveal.visible{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}
+
+/* MOBILE NAV */
+.mobile-nav{position:fixed;inset:0;background:var(--bg);z-index:190;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
+.mobile-nav.open{transform:none}
+.mobile-nav a{font-size:2.2rem;font-weight:900;color:var(--text);text-decoration:none;letter-spacing:-.04em;transition:color .2s}
+.mobile-nav a:hover{color:var(--accent)}
+.mob-close{position:absolute;top:1.5rem;right:5%;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer;font-family:var(--mono)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  nav{padding:0 4%}
+  .nav-links{display:none}
+  .nav-toggle{display:flex}
+  section{padding:5rem 4%}
+  .hero-inner{grid-template-columns:1fr;text-align:center;gap:3rem}
+  .hero-photo-wrap{order:-1}
+  .hero-photo-frame{width:240px;height:290px}
+  .hero-btns{justify-content:center}
+  .hero-stats{top:1.5rem;right:.5rem}
+  .about-grid{grid-template-columns:1fr;gap:2.5rem}
+  .skills-layout{grid-template-columns:1fr}
+  .edu-grid{grid-template-columns:1fr}
+  .ach-grid{grid-template-columns:1fr 1fr}
+  .projects-grid{grid-template-columns:1fr 1fr}
+  .add-proj-note{grid-column:span 2}
+  .gallery-grid{grid-template-columns:repeat(3,1fr)}
+  .gallery-slot:first-child{grid-column:span 1;grid-row:span 1;min-height:auto}
+  .contact-cards{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  section{padding:4rem 5%}
+  .hero-title{font-size:2.5rem}
+  .hero-stats{display:none}
+  .ach-grid{grid-template-columns:1fr}
+  .projects-grid{grid-template-columns:1fr}
+  .add-proj-note{grid-column:span 1}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .gallery-slot:first-child{grid-column:span 2;grid-row:span 1;min-height:auto}
+  footer{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mob-close" id="mobClose">✕</button>
+  <a href="#about" class="mob-link">About</a>
+  <a href="#skills" class="mob-link">Skills</a>
+  <a href="#experience" class="mob-link">Experience</a>
+  <a href="#education" class="mob-link">Education</a>
+  <a href="#achievements" class="mob-link">Achievements</a>
+  <a href="#contact" class="mob-link">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#hero">authoi<span>._</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#projects">Projects</a></li>
+  </ul>
+  <a class="nav-hire" href="#contact">Contact Me</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-noise"></div>
+  <div class="hero-glow1"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tag reveal">
+        <span class="hero-tag-dot"></span>
+        Open to opportunities
+      </div>
+      <h1 class="hero-title reveal d1">
+        <span class="name">Al Souhardo<br>Authoi</span>
+        <span class="role">Competitive Programmer</span>
+      </h1>
+      <p class="hero-desc reveal d2">
+        <strong>CSE undergraduate at Varendra University</strong> with a passion for competitive programming, backend development, and AI/ML. Executive Member at the Varendra University Programming Club and experienced Virtual Assistant.
+      </p>
+      <div class="hero-btns reveal d3">
+        <a href="#contact" class="btn-glow">Get in Touch →</a>
+        <a href="#experience" class="btn-outline">View Experience</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap reveal d2">
+      <div class="hero-photo-ring"></div>
+      <div class="hero-photo-ring2"></div>
+      <div class="hero-photo-frame">
+        <img src="CV PHOTO.png" alt="Profile Photo">
+          <div class="hero-photo-overlay"></div>
+      </div>
+      <div class="hero-badge"> Rajpara, Rajshahi 🇧🇩</div>
+      <div class="hero-stats">
+        <div class="hstat">
+          <span class="hstat-n">CSE</span>
+          <span class="hstat-l">B.Sc.</span>
+        </div>
+        <div class="hstat">
+          <span class="hstat-n">CF</span>
+          <span class="hstat-l">Codeforces</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="sec-label reveal">About Me</div>
+        <h2 class="sec-title reveal d1">Who I Am</h2>
+        <div class="about-info-cards reveal d2">
+          <div class="info-card">
+            <div class="info-card-icon">🎓</div>
+            <div class="info-card-label">University</div>
+            <div class="info-card-val">Varendra University</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">📍</div>
+            <div class="info-card-label">Location</div>
+            <div class="info-card-val">Rajshahi, BD</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">💼</div>
+            <div class="info-card-label">Current Role</div>
+            <div class="info-card-val">Virtual Assistant</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">🏆</div>
+            <div class="info-card-label">Club Role</div>
+            <div class="info-card-val">Executive, VUPC</div>
+          </div>
+        </div>
+        <div class="lang-row reveal d3">
+          <span class="lang-badge">English</span>
+          <span class="lang-badge">Bangla</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="sec-label reveal">Summary</div>
+        <p class="reveal d1">Motivated and detail-oriented <strong>undergraduate in Computer Science & Engineering</strong> with a proven background in virtual assistance and a burning passion for competitive programming.</p>
+        <p class="reveal d2">I excel at generating <strong>innovative ideas and solving complex algorithmic problems</strong>. From managing international client operations to building web apps and exploring machine learning, I bring both technical depth and professional communication.</p>
+        <p class="reveal d3">As a <strong>Competitive Programming Instructor at VUPC</strong>, I share knowledge and mentor peers while continuously sharpening my own skills on platforms like Codeforces. My goal: become a well-rounded software engineer at the intersection of AI, backend systems, and clean problem-solving.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="sec-label reveal">Technical Profile</div>
+    <h2 class="sec-title reveal d1">Skills & Tools</h2>
+    <div class="skills-layout">
+      <div>
+        <div class="skill-group-title reveal">Programming & Algorithms</div>
+        <div class="skill-pills reveal d1">
+          <span class="skill-pill highlight">Competitive Programming</span>
+          <span class="skill-pill highlight">Problem Solving</span>
+          <span class="skill-pill">C / C++</span>
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Data Structures</span>
+          <span class="skill-pill">Algorithms</span>
+          <span class="skill-pill">Java (NetBeans)</span>
+        </div>
+        <div class="skill-group-title reveal" style="margin-top:1.75rem">Web & Backend</div>
+        <div class="skill-pills reveal d2">
+          <span class="skill-pill highlight">HTML / CSS</span>
+          <span class="skill-pill">Backend Development</span>
+          <span class="skill-pill">Responsive Design</span>
+          <span class="skill-pill">REST APIs</span>
+          <span class="skill-pill">Microsoft SQL Server</span>
+        </div>
+        <div class="skill-group-title reveal" style="margin-top:1.75rem">AI / ML</div>
+        <div class="skill-pills reveal d3">
+          <span class="skill-pill highlight">Machine Learning</span>
+          <span class="skill-pill">Model Training</span>
+          <span class="skill-pill">Data-Driven Solutions</span>
+          <span class="skill-pill">Python ML Libraries</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title reveal">Tools & Productivity</div>
+        <div class="skill-pills reveal d1">
+          <span class="skill-pill highlight">VS Code</span>
+          <span class="skill-pill">Code::Blocks</span>
+          <span class="skill-pill">NetBeans</span>
+          <span class="skill-pill">Microsoft Excel</span>
+          <span class="skill-pill">Google Sheets</span>
+          <span class="skill-pill">MS Word</span>
+          <span class="skill-pill">MS Office Suite</span>
+          <span class="skill-pill">GitHub</span>
+        </div>
+        <div class="skill-group-title reveal" style="margin-top:1.75rem">Professional Skills</div>
+        <div class="skill-pills reveal d2">
+          <span class="skill-pill highlight">Project Management</span>
+          <span class="skill-pill">Client Communication</span>
+          <span class="skill-pill">Order Management</span>
+          <span class="skill-pill">Data Organization</span>
+          <span class="skill-pill">E-Commerce Ops</span>
+          <span class="skill-pill">International Clients</span>
+        </div>
+        <div class="skill-group-title reveal" style="margin-top:1.75rem">Soft Skills</div>
+        <div class="skill-pills reveal d3">
+          <span class="skill-pill highlight">Hardworking</span>
+          <span class="skill-pill">Leadership</span>
+          <span class="skill-pill">Teaching & Mentoring</span>
+          <span class="skill-pill">Adaptability</span>
+          <span class="skill-pill">Professionalism</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="sec-label reveal">Work History</div>
+    <h2 class="sec-title reveal d1">Experience</h2>
+    <div class="timeline">
+      <div class="titem reveal d1">
+        <div class="titem-header">
+          <div>
+            <div class="titem-title">Virtual Assistant — Walmart Store Management</div>
+            <div class="titem-company">RT Destination (Remote)</div>
+          </div>
+          <span class="titem-date">Aug 2024 — Present</span>
+        </div>
+        <ul class="titem-bullets">
+          <li>Provided chat and email support to international clients, ensuring timely and accurate issue resolution across multiple time zones.</li>
+          <li>Managed and organized large volumes of client data using Google Sheets and Microsoft Excel to improve operational efficiency.</li>
+          <li>Handled product listing, order management, and customer support functions for a Walmart store.</li>
+          <li>Communicated effectively with international clients, demonstrating strong professionalism and cultural adaptability.</li>
+        </ul>
+      </div>
+      <div class="titem reveal d2">
+        <div class="titem-header">
+          <div>
+            <div class="titem-title">Competitive Programming Instructor</div>
+            <div class="titem-company">Varendra University Programming Club (VUPC)</div>
+          </div>
+          <span class="titem-date">Jun 2024 — Dec 2024</span>
+        </div>
+        <ul class="titem-bullets">
+          <li>Serving as Executive Member and Instructor at VUPC, mentoring students in competitive programming and algorithmic problem-solving.</li>
+          <li>Conduct sessions and workshops to sharpen problem-solving skills among club members.</li>
+        </ul>
+      </div>
+      <div class="titem reveal d3">
+        <div class="titem-header">
+          <div>
+            <div class="titem-title">Undergraduate Engineer — Self Projects</div>
+            <div class="titem-company">Independent / Personal</div>
+          </div>
+          <span class="titem-date">2023 — Present</span>
+        </div>
+        <ul class="titem-bullets">
+          <li>Working on AI/ML and web development projects, focusing on building practical solutions and improving model performance.</li>
+          <li>Developing responsive web applications using modern technologies and integrating machine learning models where applicable.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="sec-label reveal">Academic Background</div>
+    <h2 class="sec-title reveal d1">Education</h2>
+    <div class="edu-grid">
+      <div class="edu-card reveal d1">
+        <div class="edu-degree">Bachelor of Science in Computer Science & Engineering</div>
+        <div class="edu-inst">Varendra University, Rajshahi</div>
+        <div class="edu-date">July 2023 — June 2027</div>
+        <ul class="edu-notes">
+          <li>Specialization in Programming</li>
+          <li>Working with Machine Learning & Backend Web Development</li>
+          <li>Active in competitive programming community</li>
+          <li>Executive Member, Varendra University Programming Club</li>
+        </ul>
+      </div>
+      <div class="edu-card secondary reveal d2">
+        <div class="edu-degree">Higher Secondary Certificate (HSC)</div>
+        <div class="edu-inst">Rajshahi Court College, Rajshahi</div>
+        <div class="edu-date">May 2019 — December 2021</div>
+        <ul class="edu-notes">
+          <li>Science Group</li>
+          <li>Foundation for engineering and mathematics</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="container">
+    <div class="sec-label reveal">Recognition & Activities</div>
+    <h2 class="sec-title reveal d1">Achievements</h2>
+    <div class="ach-grid">
+      <div class="ach-card reveal d1">
+        <div class="ach-icon">🏅</div>
+        <div class="ach-title">Competitive Programming</div>
+        <div class="ach-desc">Active participant on Codeforces under handle <strong style="color:var(--accent)">_authoi</strong>. Continuously sharpening algorithmic problem-solving skills through regular contests and practice.</div>
+        <a href="https://codeforces.com/profile/_authoi" target="_blank" class="ach-link">View Codeforces Profile →</a>
+      </div>
+      <div class="ach-card reveal d2">
+        <div class="ach-icon">👥</div>
+        <div class="ach-title">Executive Member — VUPC</div>
+        <div class="ach-desc">Serving as an Executive Member at Varendra University Programming Club since June 2024, actively contributing to club operations and community growth.</div>
+      </div>
+      <div class="ach-card reveal d3">
+        <div class="ach-icon">🎓</div>
+        <div class="ach-title">CP Instructor — VUPC</div>
+        <div class="ach-desc">Teaching and instructing fellow students in competitive programming, covering data structures, algorithms, and contest strategies at Varendra University.</div>
+      </div>
+      <div class="ach-card reveal d2">
+        <div class="ach-icon">💼</div>
+        <div class="ach-title">International Client Management</div>
+        <div class="ach-desc">Managed customer queries for an international e-commerce operation, enhancing client retention and satisfaction across global markets.</div>
+      </div>
+      <div class="ach-card reveal d3">
+        <div class="ach-icon">🤖</div>
+        <div class="ach-title">AI / ML Projects</div>
+        <div class="ach-desc">Building practical AI/ML solutions as an undergraduate engineer, focusing on real-world applications and model performance improvements.</div>
+      </div>
+      <div class="ach-card reveal d4">
+        <div class="ach-icon">🌐</div>
+        <div class="ach-title">Full-Stack Development</div>
+        <div class="ach-desc">Developing responsive web applications with ML integrations, bridging the gap between data science and modern web technologies.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="projects-header">
+      <div>
+        <div class="sec-label reveal">Portfolio</div>
+        <h2 class="sec-title reveal d1">Projects</h2>
+      </div>
+      <p class="sec-sub reveal d2" style="margin:0">A collection of my AI/ML, development, and competitive programming work.</p>
+    </div>
+    <div class="projects-grid">
+
+      <!-- Weather Prediction Model -->
+      <div class="proj-card reveal d1">
+        <div class="proj-thumb p1">🌦️</div>
+        <div class="proj-body">
+          <div class="proj-type">AI / ML</div>
+          <div class="proj-name">Weather Prediction Model</div>
+          <div class="proj-desc">A machine learning model trained to predict weather conditions, focusing on practical accuracy and real-world performance.</div>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">ML</span><span class="ptag">Kaggle</span></div>
+          <a href="https://www.kaggle.com/models/bdsetauthoi/weather-prediction-model/" target="_blank" class="proj-link">View on Kaggle →</a>
+        </div>
+      </div>
+
+      <!-- Breast Cancer Prediction -->
+      <div class="proj-card reveal d2">
+        <div class="proj-thumb p1">🔬</div>
+        <div class="proj-body">
+          <div class="proj-type">AI / ML</div>
+          <div class="proj-name">Breast Cancer Prediction</div>
+          <div class="proj-desc">A classification model to predict breast cancer diagnosis using medical data, built with Python and scikit-learn on Kaggle.</div>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">Classification</span><span class="ptag">Kaggle</span></div>
+          <a href="https://www.kaggle.com/models/bdsetauthoi/breast-cancer-prediction" target="_blank" class="proj-link">View on Kaggle →</a>
+        </div>
+      </div>
+
+      <!-- Scientific Calculator -->
+      <div class="proj-card reveal d3">
+        <div class="proj-thumb p2">🧮</div>
+        <div class="proj-body">
+          <div class="proj-type">Java / Software Development</div>
+          <div class="proj-name">Scientific Calculator</div>
+          <div class="proj-desc">A fully functional scientific calculator built in Java, supporting standard arithmetic and advanced scientific operations.</div>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="ptag">Java</span><span class="ptag">OOP</span></div>
+          <a href="https://github.com/Authoi49/Project_Calculator" target="_blank" class="proj-link">View on GitHub →</a>
+        </div>
+      </div>
+
+      <!-- Greedy Prefix Fix Algorithm -->
+      <div class="proj-card reveal d4">
+        <div class="proj-thumb p3">⚡</div>
+        <div class="proj-body">
+          <div class="proj-type">Competitive Programming</div>
+          <div class="proj-name">Greedy Prefix Fix Algorithm (GPFA)</div>
+          <div class="proj-desc">An original algorithm for competitive programming designed to solve prefix-based optimization problems efficiently on Codeforces.</div>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="ptag">C++</span><span class="ptag">Algorithms</span><span class="ptag">Codeforces</span></div>
+          <a href="https://github.com/Authoi49/New-CF-Algorithm" target="_blank" class="proj-link">View on GitHub →</a>
+        </div>
+      </div>
+
+      <!-- Coming Soon placeholder — same size as a proj-card -->
+      <div class="proj-card reveal d5" style="
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        border: 2px dashed rgba(255,255,255,0.12);
+        background: transparent;
+        gap: 10px;
+        min-height: 260px;
+      ">
+        <span style="font-size:2rem; opacity:0.3;">＋</span>
+        <span style="font-family:monospace; font-size:0.85rem; opacity:0.4; text-align:center;">
+          More projects will be added here
+        </span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY / CERTIFICATES -->
+<section id="gallery">
+  <div class="container">
+    <div class="gallery-intro">
+      <div class="sec-label reveal">Gallery</div>
+      <h2 class="sec-title reveal d1">Certificates & Moments</h2>
+      <p class="sec-sub reveal d2">Certificates, prize-giving ceremonies, and other achievements.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-slot reveal d1">
+        <img src="Cert1.jpg.jpeg" alt="Certificate 1" class="gallery-img" style="width:75%;opacity:1">
+      </div>
+      <div class="gallery-slot reveal d2">
+        <img src="Cert2.jpg.jpeg" alt="Certificate 2" class="gallery-img" style="width:80%;opacity:1">
+      </div>
+      <div class="gallery-slot reveal d2">
+        <img src="Cert3.jpg.jpeg" alt="Certificate 3" class="gallery-img" style="width:80%;opacity:1">
+      </div>
+      <div class="gallery-slot reveal d3">
+        <img src="pic1.jpeg" alt="Event Photo 1" class="gallery-img" style="width:80%;opacity:1">
+      </div>
+      <div class="gallery-slot reveal d3">
+        <img src="pic3.jpeg" alt="Event Photo 2" class="gallery-img" style="width:70%;opacity:1">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX OVERLAY -->
+<div id="lightbox" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.88);
+  z-index:9999;
+  align-items:center;
+  justify-content:center;
+  cursor:zoom-out;
+">
+  <img id="lightbox-img" src="" alt="" style="
+    max-width:90vw;
+    max-height:90vh;
+    border-radius:10px;
+    box-shadow:0 8px 40px rgba(0,0,0,0.7);
+    cursor:default;
+  ">
+  <button id="lightbox-close" style="
+    position:fixed;
+    top:20px;
+    right:28px;
+    background:none;
+    border:none;
+    color:#fff;
+    font-size:2.2rem;
+    cursor:pointer;
+    line-height:1;
+    opacity:0.8;
+  ">&times;</button>
+</div>
+
+<style>
+  .gallery-img {
+    cursor: zoom-in;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 8px;
+  }
+  .gallery-img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+  }
+  #lightbox {
+    transition: opacity 0.2s;
+  }
+  #lightbox-close:hover {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  // Open lightbox on image click
+  document.querySelectorAll('.gallery-img').forEach(function(img) {
+    img.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var lb = document.getElementById('lightbox');
+      document.getElementById('lightbox-img').src = this.src;
+      document.getElementById('lightbox-img').alt = this.alt;
+      lb.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  // Close when clicking the dark overlay background
+  document.getElementById('lightbox').addEventListener('click', function() {
+    closeLightbox();
+  });
+
+  // Clicking the image itself does NOT close
+  document.getElementById('lightbox-img').addEventListener('click', function(e) {
+    e.stopPropagation();
+  });
+
+  // Close on × button
+  document.getElementById('lightbox-close').addEventListener('click', function(e) {
+    e.stopPropagation();
+    closeLightbox();
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+</script>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-glow"></div>
+  <div class="container">
+    <div class="contact-inner">
+      <div class="sec-label reveal" style="justify-content:center">Get In Touch</div>
+      <h2 class="contact-title reveal d1">
+        Let's Work<br>
+        <span class="line2">Together.</span>
+      </h2>
+      <p class="contact-sub reveal d2">
+        Whether it's a project collaboration, job opportunity, or just a chat about programming — my inbox is always open. I'll respond within 24 hours.
+      </p>
+      <div class="contact-cards reveal d2">
+        <a class="contact-card" href="tel:+8801970937331">
+          <div class="cc-icon" style="background:rgba(0,229,255,.1)">📞</div>
+          <div>
+            <div class="cc-label">Phone</div>
+            <div class="cc-val">+8801970-937331</div>
+          </div>
+        </a>
+        <a class="contact-card" href="mailto:alsouhardo@gmail.com">
+          <div class="cc-icon" style="background:rgba(244,114,182,.1)">✉️</div>
+          <div>
+            <div class="cc-label">Email</div>
+            <div class="cc-val">alsouhardo@gmail.com</div>
+          </div>
+        </a>
+        <a class="contact-card" href="https://www.linkedin.com/in/al-souhardo-authoi-044694295/" target="_blank">
+          <div class="cc-icon" style="background:rgba(59,130,246,.1)">in</div>
+          <div>
+            <div class="cc-label">LinkedIn</div>
+            <div class="cc-val">al-souhardo-authoi</div>
+          </div>
+        </a>
+        <a class="contact-card" href="https://github.com/Authoi49" target="_blank">
+          <div class="cc-icon" style="background:rgba(255,255,255,.05)">⌥</div>
+          <div>
+            <div class="cc-label">GitHub</div>
+            <div class="cc-val">github.com/Authoi49</div>
+          </div>
+        </a>
+      </div>
+      <div class="socials reveal d3">
+        <a class="social-btn" href="https://codeforces.com/profile/_authoi" target="_blank">⚡ Codeforces _authoi</a>
+        <a class="social-btn" href="https://www.linkedin.com/in/al-souhardo-authoi-044694295/" target="_blank">in LinkedIn</a>
+        <a class="social-btn" href="https://github.com/Authoi49" target="_blank">⌥ GitHub</a>
+        <a class="social-btn" href="mailto:alsouhardo@gmail.com">✉ Email</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2025 Al Souhardo Authoi — Rajshahi, Bangladesh</span>
+  <a href="#hero" class="footer-back">↑ Back to top</a>
+</footer>
+
+<script>
+// Reveal on scroll
+const reveals=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+reveals.forEach(el=>obs.observe(el));
+
+// Mobile nav
+const toggle=document.getElementById('navToggle');
+const mNav=document.getElementById('mobileNav');
+const mClose=document.getElementById('mobClose');
+toggle.addEventListener('click',()=>mNav.classList.add('open'));
+mClose.addEventListener('click',()=>mNav.classList.remove('open'));
+document.querySelectorAll('.mob-link').forEach(a=>a.addEventListener('click',()=>mNav.classList.remove('open')));
+
+// Active nav highlight
+const secs=document.querySelectorAll('section[id]');
+const navAs=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-100)cur=s.id;});
+  navAs.forEach(a=>{a.style.color=a.getAttribute('href')==='#'+cur?'var(--accent)':'';});
+});
+
+// Gallery slot click hint
+document.querySelectorAll('.gallery-slot').forEach(slot=>{
+  slot.addEventListener('click',()=>{
+    slot.style.borderColor='rgba(0,229,255,0.4)';
+    slot.innerHTML='<span style="font-size:1.5rem">📌</span><span style="font-size:.7rem;color:var(--accent)">Replace src="" with your image URL</span>';
+    setTimeout(()=>{slot.style.borderColor=''},2000);
+  });
+});
+</script>
+</body>
+</html>
